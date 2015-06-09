@@ -5,7 +5,7 @@
 #include <iostream>
 #include "FieldDisplay.h"
 #include "../Entity/Field.h"
-#include "../Events/EventTypes/QuitEvent.h"
+#include "../Events/Event.h"
 
 FieldDisplay::FieldDisplay(Field *field) : EventListener(), field(field), run(true) {}
 
@@ -19,10 +19,9 @@ void FieldDisplay::display() {
     }
 }
 
-void FieldDisplay::handleEvent(QuitEvent *event) {
-    run = false;
-}
-
 void FieldDisplay::handleEvent(Event *event) {
-    EventListener::handleEvent(event);
+    if (event->getType() == "quit") {
+        run = false;
+        return;
+    }
 }
