@@ -27,6 +27,8 @@ public:
 
     void killCell(unsigned long x, unsigned long y);
     void reviveCell(unsigned long x, unsigned long y);
+
+    Field& operator=(Field &other);
 private:
     void cloneCells(Field &other);
     unsigned short countLiveNeighbors(unsigned long x, unsigned long y);

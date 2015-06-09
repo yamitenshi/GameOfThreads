@@ -17,9 +17,18 @@ Field::Field(Field &other) {
     cloneCells(other);
 }
 
+Field& Field::operator=(Field &other) {
+    width = other.getWidth();
+    height = other.getHeight();
+
+    cloneCells(other);
+
+    return *this;
+}
+
 void Field::update() {
     guard.lock();
-    Field copy(*this);
+    Field copy = *this;
 
     for(unsigned long x = 0; x < cells.size(); x++) {
         for(unsigned long y = 0; y < cells[x].size(); y++) {
@@ -101,3 +110,4 @@ void Field::reviveCell(unsigned long x, unsigned long y) {
         return;
     }
 }
+
