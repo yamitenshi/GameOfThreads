@@ -87,6 +87,10 @@ unsigned short Field::countLiveNeighbors(unsigned long x, unsigned long y) {
     unsigned short count = 0;
     for(unsigned long u = x-1; u <= x+1; u++) {
         for(unsigned long v = y-1; v <= y+1; v++) {
+            if (u == x && v == y) {
+                continue;
+            }
+
             if (cellIsAlive(u, v)) {
                 count++;
             }
