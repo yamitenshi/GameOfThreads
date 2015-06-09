@@ -29,7 +29,6 @@ Field& Field::operator=(Field &other) {
 }
 
 void Field::update() {
-    guard.lock();
     Field copy = *this;
 
     for(unsigned long x = 0; x < cells.size(); x++) {
@@ -47,7 +46,6 @@ void Field::update() {
     }
 
     cloneCells(copy);
-    guard.unlock();
 }
 
 unsigned long Field::getWidth() {
@@ -69,10 +67,6 @@ bool Field::cellIsAlive(unsigned long x, unsigned long y) {
     catch(std::out_of_range) {
         return false;
     }
-}
-
-std::mutex& Field::getMutex() {
-    return guard;
 }
 
 void Field::cloneCells(Field &other) {

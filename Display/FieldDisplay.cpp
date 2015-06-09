@@ -6,22 +6,10 @@
 #include "FieldDisplay.h"
 #include "../Entity/Field.h"
 #include "../Events/Event.h"
+#include "../Events/EventManager.h"
 
-FieldDisplay::FieldDisplay(Field *field) : EventListener(), field(field), run(true) {}
+FieldDisplay::FieldDisplay(Field *field) : field(field) {}
 
 void FieldDisplay::display() {
-    while(run) {
-        field->getMutex().lock();
-
-        std::cout << "Displaying..." << std::endl;
-
-        field->getMutex().unlock();
-    }
-}
-
-void FieldDisplay::handleEvent(Event *event) {
-    if (event->getType() == "quit") {
-        run = false;
-        return;
-    }
+    EventManager::getInstance().queueEvent(new Event("quit"));
 }

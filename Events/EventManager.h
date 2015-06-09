@@ -16,8 +16,8 @@ class EventManager {
 public:
     static EventManager &getInstance();
     void queueEvent(Event *event);
-    void registerListener(EventListener *listener, std::string &name);
-    void detachListener(std::string &name);
+    void registerListener(EventListener *listener, std::string name);
+    void detachListener(std::string name);
 
     void processEvents();
 

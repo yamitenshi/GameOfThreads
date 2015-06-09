@@ -51,12 +51,12 @@ void EventManager::queueEvent(Event *event) {
     eventQueue.push(event);
 }
 
-void EventManager::registerListener(EventListener *listener, std::string &name) {
+void EventManager::registerListener(EventListener *listener, std::string name) {
     std::pair<std::string, EventListener*> pair(name, listener);
     listeners.insert(pair);
 }
 
-void EventManager::detachListener(std::string &name) {
+void EventManager::detachListener(std::string name) {
     listeners.erase(name);
 }
 

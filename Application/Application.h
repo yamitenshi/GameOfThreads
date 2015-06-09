@@ -8,11 +8,12 @@
 
 #include <thread>
 #include <mutex>
+#include "../Events/EventListener.h"
 
 class Field;
 class FieldDisplay;
 
-class Application {
+class Application : public EventListener {
 public:
     Application();
     ~Application();
@@ -20,11 +21,16 @@ public:
     int run();
     void handleField();
     void displayField();
+
+
+    virtual void handleEvent(Event *event) override;
+
 private:
     void initThreads();
 
     std::thread *managerThread;
     std::thread *displayThread;
+    std::thread *eventProcessor;
 
     Field *field;
     FieldDisplay *fieldDisplay;
