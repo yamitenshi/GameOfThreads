@@ -15,7 +15,7 @@ class FieldDisplay : public EventListener {
 public:
     FieldDisplay(Field *field);
 
-    void display();
+    virtual void display();
 
     virtual void handleEvent(Event *event) override;
 
