@@ -18,10 +18,12 @@ Field::Field(Field &other) {
 }
 
 Field& Field::operator=(Field &other) {
-    width = other.getWidth();
-    height = other.getHeight();
+    if (this != &other) {
+        width = other.getWidth();
+        height = other.getHeight();
 
-    cloneCells(other);
+        cloneCells(other);
+    }
 
     return *this;
 }
