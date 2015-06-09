@@ -11,7 +11,7 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39a0f175-40e1-4d7d-9ec0-e59339031076" name="Default" comment="Change member types and method signatures for Field&#10; - Everything used to access elements in an std::vector (directly or indirectly) is now unsigned long&#10; - Field::countLiveNeighbors now returns unsigned short (because it will never return negative numbers, the theoretical maximum is 8, and an unsigned char would be confusing as it's not supposed to be a printable character)&#10;">
+    <list default="true" id="39a0f175-40e1-4d7d-9ec0-e59339031076" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/ThreadingTest.iml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
@@ -147,6 +147,7 @@
     </leaf>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="REBASE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -369,7 +370,19 @@
       <option name="project" value="LOCAL" />
       <updated>1433831367151</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Removed project dir again">
+      <created>1433831385893</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1433831385893</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Removed project dir again&#10;">
+      <created>1433831396434</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1433831396434</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -411,7 +424,9 @@
     <MESSAGE value="Remove project folder from repository" />
     <MESSAGE value="Change member types and method signatures for Field&#10; - Everything used to access elements in an std::vector (directly or indirectly) is now unsigned long&#10; - Field::countLiveNeighbors now returns unsigned short (because it will never return negative numbers, the theoretical maximum is 8, and an unsigned char would be confusing as it's not supposed to be a printable character)&#10;" />
     <MESSAGE value="Made FieldDisplay::display() virtual, as it's only supposed to be a base class for displaying (which can be extended to use a terminal, SDL, GTK+, and so on)&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made FieldDisplay::display() virtual, as it's only supposed to be a base class for displaying (which can be extended to use a terminal, SDL, GTK+, and so on)&#10;" />
+    <MESSAGE value="Removed project dir again" />
+    <MESSAGE value="Removed project dir again&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed project dir again&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
