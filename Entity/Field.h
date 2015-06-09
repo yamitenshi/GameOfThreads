@@ -12,29 +12,29 @@ class Cell;
 
 class Field {
 public:
-    Field(int w, int h);
+    Field(unsigned long w, unsigned long h);
     Field(Field &other);
 
     void update();
 
-    int getWidth();
-    int getHeight();
+    unsigned long getWidth();
+    unsigned long getHeight();
 
     std::mutex &getMutex();
 
-    Cell& getCell(int x, int y);
-    bool cellIsAlive(int x, int y);
+    Cell& getCell(unsigned long x, unsigned long y);
+    bool cellIsAlive(unsigned long x, unsigned long y);
 
-    void killCell(int x, int y);
-    void reviveCell(int x, int y);
+    void killCell(unsigned long x, unsigned long y);
+    void reviveCell(unsigned long x, unsigned long y);
 private:
     void cloneCells(Field &other);
-    int countLiveNeighbors(int x, int y);
+    unsigned short countLiveNeighbors(unsigned long x, unsigned long y);
 
     std::mutex guard;
     std::vector< std::vector<Cell> > cells;
-    int width;
-    int height;
+    unsigned long width;
+    unsigned long height;
 };
 
 #endif //THREADINGTEST_FIELD_H

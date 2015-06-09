@@ -6,7 +6,7 @@
 #include "Cell.h"
 #include <iostream>
 
-Field::Field(int w, int h) :
+Field::Field(unsigned long w, unsigned long h) :
         width(w),
         height(h),
         cells(std::vector< std::vector<Cell> >(w, std::vector<Cell>(h, Cell(false)))) {}
@@ -21,12 +21,12 @@ void Field::update() {
     guard.lock();
     Field copy(*this);
 
-    for(int x = 0; x < cells.size(); x++) {
-        for(int y = 0; y < cells[x].size(); y++) {
-            int liveNeighbors = countLiveNeighbors(x, y);
+    for(unsigned long x = 0; x < cells.size(); x++) {
+        for(unsigned long y = 0; y < cells[x].size(); y++) {
+            unsigned short liveNeighbors = countLiveNeighbors(x, y);
 
             if (liveNeighbors < 2 || liveNeighbors > 4) {
-                copy.killCell(x, y);
+                copy.killCell(0, 0);
             }
 
             if (liveNeighbors == 2) {
@@ -39,19 +39,19 @@ void Field::update() {
     guard.unlock();
 }
 
-int Field::getWidth() {
+unsigned long Field::getWidth() {
     return width;
 }
 
-int Field::getHeight() {
+unsigned long Field::getHeight() {
     return height;
 }
 
-Cell& Field::getCell(int x, int y) {
+Cell& Field::getCell(unsigned long x, unsigned long y) {
     return cells.at(x).at(y);
 }
 
-bool Field::cellIsAlive(int x, int y) {
+bool Field::cellIsAlive(unsigned long x, unsigned long y) {
     try {
         return cells.at(x).at(y).isAlive();
     }
@@ -65,17 +65,17 @@ std::mutex& Field::getMutex() {
 }
 
 void Field::cloneCells(Field &other) {
-    for (int x = 0; x < cells.size(); x++) {
-        for(int y = 0; y < cells[x].size(); y++) {
+    for (unsigned long x = 0; x < cells.size(); x++) {
+        for(unsigned long y = 0; y < cells[x].size(); y++) {
             cells[x][y].setLife(other.getCell(x, y).isAlive());
         }
     }
 }
 
-int Field::countLiveNeighbors(int x, int y) {
-    int count = 0;
-    for(int u = x-1; u <= x+1; u++) {
-        for(int v = y-1; v <= y+1; v++) {
+unsigned short Field::countLiveNeighbors(unsigned long x, unsigned long y) {
+    unsigned short count = 0;
+    for(unsigned long u = x-1; u <= x+1; u++) {
+        for(unsigned long v = y-1; v <= y+1; v++) {
             if (cellIsAlive(u, v)) {
                 count++;
             }
@@ -84,7 +84,7 @@ int Field::countLiveNeighbors(int x, int y) {
     return count;
 }
 
-void Field::killCell(int x, int y) {
+void Field::killCell(unsigned long x, unsigned long y) {
     try {
         cells.at(x).at(y).setLife(false);
     }
@@ -93,7 +93,7 @@ void Field::killCell(int x, int y) {
     }
 }
 
-void Field::reviveCell(int x, int y) {
+void Field::reviveCell(unsigned long x, unsigned long y) {
     try {
         cells.at(x).at(y).setLife(true);
     }
