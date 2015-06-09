@@ -11,16 +11,17 @@ Field::Field(unsigned long w, unsigned long h) :
         height(h),
         cells(std::vector< std::vector<Cell> >(w, std::vector<Cell>(h, Cell(false)))) {}
 
-Field::Field(Field &other) {
-    Field(other.getWidth(), other.getHeight());
-
+Field::Field(Field &other) : Field(other.getWidth(), other.getHeight()) {
     cloneCells(other);
 }
 
 Field& Field::operator=(Field &other) {
     if (this != &other) {
+        // Manual copying is necessary in the assignment operator, otherwise I'd just use the copy constructor
         width = other.getWidth();
         height = other.getHeight();
+
+        cells = std::vector< std::vector<Cell> >(width, std::vector<Cell>(height, Cell(false)));
 
         cloneCells(other);
     }
@@ -29,14 +30,14 @@ Field& Field::operator=(Field &other) {
 }
 
 void Field::update() {
-    Field copy = *this;
+    Field copy(*this);
 
     for(unsigned long x = 0; x < cells.size(); x++) {
         for(unsigned long y = 0; y < cells[x].size(); y++) {
             unsigned short liveNeighbors = countLiveNeighbors(x, y);
 
             if (liveNeighbors < 2 || liveNeighbors > 4) {
-                copy.killCell(0, 0);
+                copy.killCell(x, y);
             }
 
             if (liveNeighbors == 2) {
